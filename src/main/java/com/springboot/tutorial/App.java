@@ -1,11 +1,16 @@
-package com.mavendemo;
+package com.springboot.tutorial;
 
 import java.util.List;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@SpringBootApplication
 public class App 
 {
     public static void main( String[] args )
     {
+        SpringApplication.run(App.class, args);
+
         ProductService service = new ProductService();
 
         service.addProduct(new Product(1L, "Laptop", 4000));

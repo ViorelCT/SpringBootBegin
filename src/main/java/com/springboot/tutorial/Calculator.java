@@ -1,4 +1,4 @@
-package com.mavendemo;
+package com.springboot.tutorial;
 import java.util.Scanner;
 
 public class Calculator {

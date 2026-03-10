@@ -1,4 +1,4 @@
-package com.mavendemo;
+package com.springboot.tutorial;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

@@ -1,4 +1,4 @@
-package com.mavendemo;
+package com.springboot.tutorial;
 
 public class CreditCardPayment implements PaymentMethod {
 
