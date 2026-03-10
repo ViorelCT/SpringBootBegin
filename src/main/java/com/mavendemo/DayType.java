@@ -2,24 +2,23 @@ package com.mavendemo;
 
 public class DayType {
 
-    // Metoda care returnează numele zilei și tipul (weekday/weekend)
     public String getDayInfo(int day) {
         String dayName = switch (day) {
-            case 1 -> "Luni";
-            case 2 -> "Marti";
-            case 3 -> "Miercuri";
-            case 4 -> "Joi";
-            case 5 -> "Vineri";
-            case 6 -> "Sambata";
-            case 7 -> "Duminica";
+            case 1 -> "Monday";
+            case 2 -> "Tuesday";
+            case 3 -> "Wednesday";
+            case 4 -> "Thursday";
+            case 5 -> "Friday";
+            case 6 -> "Saturday";
+            case 7 -> "Sunday";
             default -> "Invalid";
         };
 
         if (dayName.equals("Invalid")) {
-            return "Numar invalid!";
+            return "Invalid number!";
         } else {
             String type = (day == 6 || day == 7) ? "weekend" : "weekday";
-            return "Ziua este " + dayName + "\ntip: " + type;
+            return "The day is " + dayName + "\ntype: " + type;
         }
     }
 }
