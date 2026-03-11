@@ -9,13 +9,14 @@ import java.util.stream.Collectors;
 public class ProductService {
     private final Map<Long, Product> products = new HashMap<>();
 
-    public void addProduct(Product product) {
+    public Product addProduct(Product product) {
 
         if (products.containsKey(product.getId())) {
             throw new IllegalArgumentException("Product ID already exists");
         }
 
         products.put(product.getId(), product);
+        return product;
     }
 
     public Product getProductById(Long id) {
@@ -35,6 +36,19 @@ public class ProductService {
             throw new ProductNotFoundException("Product with id " + id + " not found");
         }
         return product.getName();
+    }
+
+    public Product updateProduct(Long id, String name, double price) {
+        Product product = products.get(id);
+
+        if (id == null) {
+            throw new RuntimeException("Product not found");
+        }
+
+        product.setName(name);
+        product.setPrice(price);
+
+        return product;
     }
 
     public void deleteProduct(Long id) {
