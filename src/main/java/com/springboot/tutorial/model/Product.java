@@ -1,4 +1,4 @@
-package com.springboot.tutorial;
+package com.springboot.tutorial.model;
 
 public class Product {
 

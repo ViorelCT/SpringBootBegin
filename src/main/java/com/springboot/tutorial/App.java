@@ -10,14 +10,8 @@ public class App
     public static void main( String[] args )
     {
         SpringApplication.run(App.class, args);
-        System.out.println("");
-        PaymentServiceLog paymentService = new PaymentServiceLog();
+        System.out.println(" ");
 
-        paymentService.processPayment(150);
-
-        paymentService.processPayment(-50);
-
-        paymentService.processPayment(200);
 
 
     }

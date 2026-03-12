@@ -4,14 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="635bb380-eee5-47e0-acf0-a9797b18cf03" name="Changes" comment="Update Spring Boot">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/PaymentServiceLog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/springboot/tutorial/ProductServiceTest.java" afterDir="false" />
+    <list default="true" id="635bb380-eee5-47e0-acf0-a9797b18cf03" name="Changes" comment="Unit test exercise">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/repository/InMemoryProductRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/repository/ProductRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/springboot/tutorial/service/ProductServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/springboot/tutorial/service/ProductServiceUnitTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/Calculator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/CreditCardPayment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/DayType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/PayPalPayment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/PaymentMethod.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/PaymentService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/PaymentServiceLog.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/ProductNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/exception/ProductNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/Vehicle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/Vehicle2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/springboot/tutorial/ProductServiceTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +34,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -52,6 +66,7 @@
   "keyToString": {
     "Application.App.executor": "Run",
     "JUnit.ProductServiceTest.executor": "Run",
+    "JUnit.ProductServiceUnitTest.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -67,7 +82,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "configurable.group.appearance",
+    "settings.editor.selected.configurable": "reference.idesettings.debugger.capture",
     "to.speed.mode.migration.done": "true"
   }
 }]]></component>
@@ -121,13 +136,22 @@
       <option name="project" value="LOCAL" />
       <updated>1773173792889</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Unit test exercise">
+      <option name="closed" value="true" />
+      <created>1773262091282</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1773262091282</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Maven demo" />
     <MESSAGE value="Add Spring boot" />
     <MESSAGE value="Update Spring Boot" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update Spring Boot" />
+    <MESSAGE value="Unit test exercise" />
+    <option name="LAST_COMMIT_MESSAGE" value="Unit test exercise" />
   </component>
 </project>

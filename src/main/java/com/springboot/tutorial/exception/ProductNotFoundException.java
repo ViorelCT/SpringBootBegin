@@ -1,4 +1,4 @@
-package com.springboot.tutorial;
+package com.springboot.tutorial.exception;
 
 public class ProductNotFoundException extends RuntimeException {
 
