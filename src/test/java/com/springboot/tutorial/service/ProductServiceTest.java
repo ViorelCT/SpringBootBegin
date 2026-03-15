@@ -99,4 +99,22 @@ class ProductServiceTest {
         assertEquals(2, result.size());
     }
 
+    @Test
+    void shouldUpdateProduct() {
+
+        Product product = new Product(1L, "Laptop", 5000);
+        when(repository.findById(1L))
+                .thenReturn(Optional.of(product));
+        when(repository.save(any(Product.class)))
+                .thenAnswer(invocation -> invocation.getArgument(0));
+
+        // Act
+        Product updated = service.updateProduct(1L, "Gaming Laptop", 7000);
+
+        // Assert
+        assertEquals("Gaming Laptop", updated.getName());
+        assertEquals(7000, updated.getPrice());
+
+    }
+
 }
