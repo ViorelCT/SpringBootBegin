@@ -4,7 +4,7 @@ import com.springboot.tutorial.model.Product;
 
 import java.util.*;
 
-public class InMemoryProductRepository implements ProductRepository {
+public abstract class InMemoryProductRepository implements ProductRepository {
 
     private final Map<Long, Product> products = new HashMap<>();
 

@@ -2,119 +2,100 @@ package com.springboot.tutorial.service;
 
 import com.springboot.tutorial.model.Product;
 import com.springboot.tutorial.exception.ProductNotFoundException;
-import com.springboot.tutorial.repository.ProductRepository;
-
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 
-import org.mockito.Mock;
-import org.mockito.InjectMocks;
-import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.Optional;
 import java.util.List;
 
-import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(MockitoExtension.class)
 class ProductServiceTest {
 
-    @Mock
-    private ProductRepository repository;
-
-    @InjectMocks
     private ProductService service;
+
+    @BeforeEach
+    void setUp() {
+        service = new ProductService();
+    }
 
     @Test
     void shouldReturnProductById() {
+        Product product = new Product(null, "Laptop", 5000);
+        Product created = service.createProduct(product);
 
-        Product product = new Product(1L, "Laptop", 5000);
-
-        when(repository.findById(1L))
-                .thenReturn(Optional.of(product));
-
-        Product result = service.getProductById(1L);
+        Product result = service.getProductById(created.getId());
 
         assertEquals("Laptop", result.getName());
-
-        verify(repository).findById(1L);
+        assertEquals(5000, result.getPrice());
     }
 
     @Test
     void shouldThrowExceptionWhenProductNotFound() {
-
-        when(repository.findById(1L))
-                .thenReturn(Optional.empty());
-
         assertThrows(ProductNotFoundException.class, () ->
-                service.getProductById(1L)
+                service.getProductById(999L)
         );
     }
 
     @Test
     void shouldAddProduct() {
+        Product product = new Product(null, "Laptop", 5000);
+        Product saved = service.createProduct(product);
 
-        Product product = new Product(1L, "Laptop", 5000);
-
-        when(repository.findById(1L))
-                .thenReturn(Optional.empty());
-
-        when(repository.save(product))
-                .thenReturn(product);
-
-        Product saved = service.addProduct(product);
-
+        assertNotNull(saved.getId());
         assertEquals("Laptop", saved.getName());
+        assertEquals(5000, saved.getPrice());
 
-        verify(repository).save(product);
+        // Confirm it's in the service storage
+        Product fetched = service.getProductById(saved.getId());
+        assertEquals("Laptop", fetched.getName());
     }
 
     @Test
     void shouldDeleteProduct() {
+        Product product = new Product(null, "Laptop", 5000);
+        Product created = service.createProduct(product);
 
-        Product product = new Product(1L, "Laptop", 5000);
+        // Delete
+        service.deleteProduct(created.getId());
 
-        when(repository.findById(1L))
-                .thenReturn(Optional.of(product));
-
-        service.deleteProduct(1L);
-
-        verify(repository).deleteById(1L);
+        // Verify deletion
+        assertThrows(ProductNotFoundException.class, () ->
+                service.getProductById(created.getId())
+        );
     }
 
     @Test
     void shouldReturnAllProducts() {
-
-        List<Product> products = List.of(
-                new Product(1L,"Laptop",5000),
-                new Product(2L,"Mouse",200)
-        );
-
-        when(repository.findAll())
-                .thenReturn(products);
+        Product p1 = service.createProduct(new Product(null, "Laptop", 5000));
+        Product p2 = service.createProduct(new Product(null, "Mouse", 200));
 
         List<Product> result = service.getAllProducts();
 
         assertEquals(2, result.size());
+        assertTrue(result.stream().anyMatch(p -> p1.getName().equals("Laptop")));
+        assertTrue(result.stream().anyMatch(p -> p2.getName().equals("Mouse")));
     }
 
     @Test
     void shouldUpdateProduct() {
+        // Arrange: create initial product
+        Product product = new Product(null, "Laptop", 5000);
+        Product created = service.createProduct(product);
 
-        Product product = new Product(1L, "Laptop", 5000);
-        when(repository.findById(1L))
-                .thenReturn(Optional.of(product));
-        when(repository.save(any(Product.class)))
-                .thenAnswer(invocation -> invocation.getArgument(0));
+        // Prepare update data
+        Product updateData = new Product(null, "Gaming Laptop", 7000);
 
-        // Act
-        Product updated = service.updateProduct(1L, "Gaming Laptop", 7000);
+        // Act: update product
+        Product updated = service.updateProduct(created.getId(), updateData);
 
-        // Assert
-        assertEquals("Gaming Laptop", updated.getName());
-        assertEquals(7000, updated.getPrice());
+        // Assert: check all fields
+        assertEquals(created.getId(), updated.getId(), "ID should remain the same");
+        assertEquals("Gaming Laptop", updated.getName(), "Name should be updated");
+        assertEquals(7000, updated.getPrice(), "Price should be updated");
 
+        // Confirm storage updated
+        Product fetched = service.getProductById(created.getId());
+        assertEquals("Gaming Laptop", fetched.getName());
+        assertEquals(7000, fetched.getPrice());
     }
-
 }

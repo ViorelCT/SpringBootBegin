@@ -2,75 +2,57 @@ package com.springboot.tutorial.service;
 
 import com.springboot.tutorial.model.Product;
 import com.springboot.tutorial.exception.ProductNotFoundException;
-import com.springboot.tutorial.repository.ProductRepository;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.*;
 
+@Service
 public class ProductService {
 
-    private final ProductRepository repository;
+    private final Map<Long, Product> products = new HashMap<>();
 
-    public ProductService(ProductRepository repository) {
-        this.repository = repository;
+    public ProductService() {
+
+//        createProduct(new Product(null, "Laptop", 1500));
+//        createProduct(new Product(null, "Phone", 800));
+//        createProduct(new Product(null, "Monitor", 400));
     }
 
-    public Product addProduct(Product product) {
+    private long nextId = 1;
 
-        if (repository.findById(product.getId()).isPresent()) {
-            throw new IllegalArgumentException("Product ID already exists");
-        }
-
-        return repository.save(product);
+    public List<Product> getAllProducts() {
+        return new ArrayList<>(products.values());
     }
 
     public Product getProductById(Long id) {
 
-        return repository.findById(id)
+        return Optional.ofNullable(products.get(id))
                 .orElseThrow(() ->
-                        new ProductNotFoundException("Product not found"));
+                        new ProductNotFoundException("Product " + id + " not found"));
     }
 
-    public List<Product> getAllProducts() {
+    public Product createProduct(Product product) {
 
-        return repository.findAll();
+        product.setId(nextId++);
+        products.put(product.getId(), product);
+
+        return product;
     }
 
-    public Product updateProduct(Long id, String name, double price) {
+    public Product updateProduct(Long id, Product updatedProduct) {
 
-        Product product = repository.findById(id)
-                .orElseThrow(() ->
-                        new ProductNotFoundException("Product not found"));
+        Product product = getProductById(id);
 
-        product.setName(name);
-        product.setPrice(price);
+        product.setName(updatedProduct.getName());
+        product.setPrice(updatedProduct.getPrice());
 
-        return repository.save(product);
+        return product;
     }
 
     public void deleteProduct(Long id) {
 
-        repository.findById(id)
-                .orElseThrow(() ->
-                        new ProductNotFoundException("Product not found"));
-
-        repository.deleteById(id);
-    }
-
-    public List<Product> getProductsAbovePrice(double price) {
-
-        return repository.findAll()
-                .stream()
-                .filter(p -> p.getPrice() > price)
-                .collect(Collectors.toList());
-    }
-
-    public List<String> getProductNamesByPrice(double price) {
-
-        return repository.findAll()
-                .stream()
-                .filter(p -> p.getPrice() == price)
-                .map(Product::getName)
-                .collect(Collectors.toList());
+        if(products.remove(id) == null){
+            throw new ProductNotFoundException("Product " + id + " not found");
+        }
     }
 }
