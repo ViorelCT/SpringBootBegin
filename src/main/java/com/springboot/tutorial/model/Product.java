@@ -1,9 +1,16 @@
 package com.springboot.tutorial.model;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+
 public class Product {
 
     private Long id;
+
+    @Min(value = 3, message = "The product name has to be at least 3 characters")
     private String name;
+
+    @Min(value = 1, message = "Price must be greater than 0")
     private double price;
 
     public Product() {}
