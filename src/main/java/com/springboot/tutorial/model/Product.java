@@ -7,6 +7,7 @@ public class Product {
 
     private Long id;
 
+    @NotBlank(message = "Name cannot be empty")
     @Min(value = 3, message = "The product name has to be at least 3 characters")
     private String name;
 

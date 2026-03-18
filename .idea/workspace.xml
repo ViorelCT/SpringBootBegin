@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="635bb380-eee5-47e0-acf0-a9797b18cf03" name="Changes" comment="HTTP client">
+    <list default="true" id="635bb380-eee5-47e0-acf0-a9797b18cf03" name="Changes" comment="HTTP validation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/controller/ProductController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/service/ProductService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +158,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773665570748</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="HTTP validation">
+      <option name="closed" value="true" />
+      <created>1773855367591</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1773855367591</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -168,6 +177,7 @@
     <MESSAGE value="Mockito test" />
     <MESSAGE value="Json serialization" />
     <MESSAGE value="HTTP client" />
-    <option name="LAST_COMMIT_MESSAGE" value="HTTP client" />
+    <MESSAGE value="HTTP validation" />
+    <option name="LAST_COMMIT_MESSAGE" value="HTTP validation" />
   </component>
 </project>

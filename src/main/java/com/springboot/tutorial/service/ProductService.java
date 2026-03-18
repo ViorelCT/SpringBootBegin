@@ -54,5 +54,6 @@ public class ProductService {
         if(products.remove(id) == null){
             throw new ProductNotFoundException("Product " + id + " not found");
         }
+        products.remove(id);
     }
 }

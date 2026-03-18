@@ -33,9 +33,7 @@ public class ProductController {
 
         Product created = productService.createProduct(product);
 
-        return ResponseEntity
-                .status(201)
-                .body(created);
+        return ResponseEntity.status(201).body(created);
     }
 
     @PutMapping("/{id}")
