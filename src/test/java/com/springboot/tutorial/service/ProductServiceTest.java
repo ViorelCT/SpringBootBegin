@@ -2,6 +2,7 @@ package com.springboot.tutorial.service;
 
 import com.springboot.tutorial.model.Product;
 import com.springboot.tutorial.exception.ProductNotFoundException;
+import com.springboot.tutorial.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +16,8 @@ class ProductServiceTest {
 
     @BeforeEach
     void setUp() {
-        service = new ProductService();
+        ProductRepository repository = new ProductRepository();
+        service = new ProductService(repository);
     }
 
     @Test
@@ -45,7 +47,6 @@ class ProductServiceTest {
         assertEquals("Laptop", saved.getName());
         assertEquals(5000, saved.getPrice());
 
-        // Confirm it's in the service storage
         Product fetched = service.getProductById(saved.getId());
         assertEquals("Laptop", fetched.getName());
     }
@@ -55,10 +56,8 @@ class ProductServiceTest {
         Product product = new Product(null, "Laptop", 5000);
         Product created = service.createProduct(product);
 
-        // Delete
         service.deleteProduct(created.getId());
 
-        // Verify deletion
         assertThrows(ProductNotFoundException.class, () ->
                 service.getProductById(created.getId())
         );
@@ -72,28 +71,23 @@ class ProductServiceTest {
         List<Product> result = service.getAllProducts();
 
         assertEquals(2, result.size());
-        assertTrue(result.stream().anyMatch(p -> p1.getName().equals("Laptop")));
-        assertTrue(result.stream().anyMatch(p -> p2.getName().equals("Mouse")));
+        assertTrue(result.stream().anyMatch(p -> p.getName().equals("Laptop")));
+        assertTrue(result.stream().anyMatch(p -> p.getName().equals("Mouse")));
     }
 
     @Test
     void shouldUpdateProduct() {
-        // Arrange: create initial product
         Product product = new Product(null, "Laptop", 5000);
         Product created = service.createProduct(product);
 
-        // Prepare update data
         Product updateData = new Product(null, "Gaming Laptop", 7000);
 
-        // Act: update product
         Product updated = service.updateProduct(created.getId(), updateData);
 
-        // Assert: check all fields
-        assertEquals(created.getId(), updated.getId(), "ID should remain the same");
-        assertEquals("Gaming Laptop", updated.getName(), "Name should be updated");
-        assertEquals(7000, updated.getPrice(), "Price should be updated");
+        assertEquals(created.getId(), updated.getId());
+        assertEquals("Gaming Laptop", updated.getName());
+        assertEquals(7000, updated.getPrice());
 
-        // Confirm storage updated
         Product fetched = service.getProductById(created.getId());
         assertEquals("Gaming Laptop", fetched.getName());
         assertEquals(7000, fetched.getPrice());

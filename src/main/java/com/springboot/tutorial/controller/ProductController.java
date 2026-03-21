@@ -1,5 +1,8 @@
 package com.springboot.tutorial.controller;
 
+import com.springboot.tutorial.dto.ProductRequest;
+import com.springboot.tutorial.dto.ProductResponse;
+import com.springboot.tutorial.mapper.ProductMapper;
 import com.springboot.tutorial.model.Product;
 import com.springboot.tutorial.service.ProductService;
 import jakarta.validation.Valid;
@@ -19,29 +22,45 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<Product> getAllProducts(){
-        return productService.getAllProducts();
+    public List<ProductResponse> getAllProducts(){
+
+        return productService.getAllProducts()
+                .stream()
+                .map(ProductMapper::toResponse)
+                .toList();
     }
 
     @GetMapping("/{id}")
-    public Product getProduct(@PathVariable Long id){
-        return productService.getProductById(id);
+    public ProductResponse getProduct(@PathVariable Long id){
+
+        return ProductMapper.toResponse(
+                productService.getProductById(id)
+        );
     }
 
     @PostMapping
-    public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product){
+    public ResponseEntity<ProductResponse> createProduct(
+            @Valid @RequestBody ProductRequest request){
 
+        Product product = ProductMapper.toEntity(request);
         Product created = productService.createProduct(product);
 
-        return ResponseEntity.status(201).body(created);
+        return ResponseEntity
+                .status(201)
+                .body(ProductMapper.toResponse(created));
     }
 
     @PutMapping("/{id}")
-    public Product updateProduct(
+    public ProductResponse updateProduct(
             @PathVariable Long id,
-            @RequestBody Product product){
+            @RequestBody ProductRequest request){
 
-        return productService.updateProduct(id, product);
+        Product updated = productService.updateProduct(
+                id,
+                ProductMapper.toEntity(request)
+        );
+
+        return ProductMapper.toResponse(updated);
     }
 
     @DeleteMapping("/{id}")

@@ -1,33 +1,15 @@
-package com.springboot.tutorial.model;
+package com.springboot.tutorial.dto;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
-public class Product {
-
-    private Long id;
+public class ProductRequest {
 
     @NotBlank(message = "Name cannot be empty")
     private String name;
 
     @Min(value = 1, message = "Price must be greater than 0")
     private double price;
-
-    public Product() {}
-
-    public Product(Long id, String name, double price) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -42,9 +24,6 @@ public class Product {
     }
 
     public void setPrice(double price) {
-        if(price < 0){
-            throw new IllegalArgumentException("Price cannot be negative");
-        }
         this.price = price;
     }
 }
