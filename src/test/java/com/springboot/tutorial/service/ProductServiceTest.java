@@ -1,24 +1,26 @@
 package com.springboot.tutorial.service;
 
-import com.springboot.tutorial.model.Product;
 import com.springboot.tutorial.exception.ProductNotFoundException;
+import com.springboot.tutorial.model.Product;
 import com.springboot.tutorial.repository.ProductRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
+@Transactional
 class ProductServiceTest {
 
+    @Autowired
     private ProductService service;
 
-    @BeforeEach
-    void setUp() {
-        ProductRepository repository = new ProductRepository();
-        service = new ProductService(repository);
-    }
+    @Autowired
+    private ProductRepository repository;
 
     @Test
     void shouldReturnProductById() {

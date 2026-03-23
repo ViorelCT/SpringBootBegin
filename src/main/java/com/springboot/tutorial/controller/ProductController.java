@@ -33,8 +33,7 @@ public class ProductController {
     @GetMapping("/{id}")
     public ProductResponse getProduct(@PathVariable Long id){
 
-        return ProductMapper.toResponse(
-                productService.getProductById(id)
+        return ProductMapper.toResponse(productService.getProductById(id)
         );
     }
 
@@ -55,10 +54,7 @@ public class ProductController {
             @PathVariable Long id,
             @RequestBody ProductRequest request){
 
-        Product updated = productService.updateProduct(
-                id,
-                ProductMapper.toEntity(request)
-        );
+        Product updated = productService.updateProduct(id, ProductMapper.toEntity(request));
 
         return ProductMapper.toResponse(updated);
     }
