@@ -9,7 +9,7 @@ import jakarta.validation.constraints.NotBlank;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank(message = "Name cannot be empty")
@@ -17,6 +17,10 @@ public class Product {
 
     @Min(value = 1, message = "Price must be greater than 0")
     private double price;
+
+    @ManyToOne(fetch = FetchType.LAZY) // 🔥 BEST PRACTICE
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     public Product() {}
 
@@ -30,20 +34,24 @@ public class Product {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public double getPrice() {
         return price;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setPrice(double price) {
@@ -51,5 +59,9 @@ public class Product {
             throw new IllegalArgumentException("Price cannot be negative");
         }
         this.price = price;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

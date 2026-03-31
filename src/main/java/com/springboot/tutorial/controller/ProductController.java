@@ -33,8 +33,7 @@ public class ProductController {
     @GetMapping("/{id}")
     public ProductResponse getProduct(@PathVariable Long id){
 
-        return ProductMapper.toResponse(productService.getProductById(id)
-        );
+        return ProductMapper.toResponse(productService.getProductById(id));
     }
 
     @PostMapping
@@ -42,7 +41,8 @@ public class ProductController {
             @Valid @RequestBody ProductRequest request){
 
         Product product = ProductMapper.toEntity(request);
-        Product created = productService.createProduct(product);
+
+        Product created = productService.createProduct(product, request.getCategoryId());
 
         return ResponseEntity
                 .status(201)
@@ -54,7 +54,11 @@ public class ProductController {
             @PathVariable Long id,
             @RequestBody ProductRequest request){
 
-        Product updated = productService.updateProduct(id, ProductMapper.toEntity(request));
+        Product updated = productService.updateProduct(
+                id,
+                ProductMapper.toEntity(request),
+                request.getCategoryId()
+        );
 
         return ProductMapper.toResponse(updated);
     }

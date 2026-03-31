@@ -6,12 +6,14 @@ public class ProductResponse {
     private String name;
     private double price;
     private String priceLabel;
+    private String categoryName;
 
-    public ProductResponse(Long id, String name, double price, String priceLabel) {
+    public ProductResponse(Long id, String name, double price, String priceLabel, String categoryName) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.priceLabel = priceLabel;
+        this.categoryName = categoryName;
     }
 
     public Long getId() {
@@ -28,5 +30,9 @@ public class ProductResponse {
 
     public String getPriceLabel() {
         return priceLabel;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
     }
 }

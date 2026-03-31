@@ -14,11 +14,16 @@ public class ProductMapper {
 
         String priceLabel = product.getPrice() + " USD";
 
+        String categoryName = product.getCategory() != null
+                ? product.getCategory().getName()
+                : null;
+
         return new ProductResponse(
                 product.getId(),
                 product.getName(),
                 product.getPrice(),
-                priceLabel
+                priceLabel,
+                categoryName
         );
     }
 }

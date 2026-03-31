@@ -4,15 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="635bb380-eee5-47e0-acf0-a9797b18cf03" name="Changes" comment="Add repository and dto">
+    <list default="true" id="635bb380-eee5-47e0-acf0-a9797b18cf03" name="Changes" comment="Implement DB using PostgreSQL and DBeaver">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/controller/CategoryController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/dto/CategoryRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/dto/CategoryResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/mapper/CategoryMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/model/Category.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/repository/CategoryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/service/CategoryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/controller/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/dto/ProductRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/dto/ProductRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/dto/ProductResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/dto/ProductResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/mapper/ProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/mapper/ProductMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/model/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/repository/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/repository/ProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/springboot/tutorial/service/ProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/springboot/tutorial/service/ProductServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/springboot/tutorial/service/ProductServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +30,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Dockerfile" />
         <option value="Interface" />
         <option value="Class" />
       </list>
@@ -56,6 +65,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Dockerfile.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.AppTest.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.ProductServiceTest.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.ProductServiceTest.shouldReturnAllProducts.executor&quot;: &quot;Run&quot;,
@@ -75,7 +85,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Docker&quot;,
     &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
   }
 }</component>
@@ -94,6 +104,18 @@
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <module name="SpringBoot" />
       <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-image" temporary="true">
+      <deployment type="docker-image">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
       <method v="2" />
     </configuration>
   </component>
@@ -185,7 +207,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774107078309</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Implement DB using PostgreSQL and DBeaver">
+      <option name="closed" value="true" />
+      <created>1774260315949</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1774260315949</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -199,6 +229,7 @@
     <MESSAGE value="HTTP validation" />
     <MESSAGE value="Mini test" />
     <MESSAGE value="Add repository and dto" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add repository and dto" />
+    <MESSAGE value="Implement DB using PostgreSQL and DBeaver" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement DB using PostgreSQL and DBeaver" />
   </component>
 </project>
