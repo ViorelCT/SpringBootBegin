@@ -18,7 +18,7 @@ public class Product {
     @Min(value = 1, message = "Price must be greater than 0")
     private double price;
 
-    @ManyToOne(fetch = FetchType.LAZY) // 🔥 BEST PRACTICE
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
 

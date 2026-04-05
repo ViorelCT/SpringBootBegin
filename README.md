@@ -61,7 +61,8 @@ spring.jpa.show-sql=true
 ```properties
     {
     "name": "Laptop",
-    "price": 5000
+    "price": 5000,
+    "category": 1
     }
 ```
 

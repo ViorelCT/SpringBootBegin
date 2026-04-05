@@ -2,7 +2,6 @@ package com.springboot.tutorial.service;
 
 import com.springboot.tutorial.model.Category;
 import com.springboot.tutorial.repository.CategoryRepository;
-import com.springboot.tutorial.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,11 +25,10 @@ public class CategoryService {
 
     public void deleteCategory(Long id) {
 
-        if (!repository.existsById(id)) {
-            throw new RuntimeException("Category not found");
-        }
+        Category category = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Category not found"));
 
-        if (repository.existsByCategoryId(id)) {
+        if (category.getProducts() != null && !category.getProducts().isEmpty()) {
             throw new RuntimeException("Cannot delete category with existing products");
         }
 
