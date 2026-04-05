@@ -3,6 +3,7 @@ package com.springboot.tutorial.service;
 import com.springboot.tutorial.exception.ProductNotFoundException;
 import com.springboot.tutorial.model.Product;
 import com.springboot.tutorial.repository.ProductRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,10 +23,15 @@ class ProductServiceTest {
     @Autowired
     private ProductRepository repository;
 
+    @BeforeEach
+    void cleanDatabase() {
+        repository.deleteAll();
+    }
+
     @Test
     void shouldReturnProductById() {
         Product product = new Product(null, "Laptop", 5000);
-        Product created = service.createProduct(product);
+        Product created = service.createProduct(product, 1L);
 
         Product result = service.getProductById(created.getId());
 
@@ -43,7 +49,7 @@ class ProductServiceTest {
     @Test
     void shouldAddProduct() {
         Product product = new Product(null, "Laptop", 5000);
-        Product saved = service.createProduct(product);
+        Product saved = service.createProduct(product, 1L);
 
         assertNotNull(saved.getId());
         assertEquals("Laptop", saved.getName());
@@ -56,7 +62,7 @@ class ProductServiceTest {
     @Test
     void shouldDeleteProduct() {
         Product product = new Product(null, "Laptop", 5000);
-        Product created = service.createProduct(product);
+        Product created = service.createProduct(product, 1L);
 
         service.deleteProduct(created.getId());
 
@@ -67,8 +73,8 @@ class ProductServiceTest {
 
     @Test
     void shouldReturnAllProducts() {
-        Product p1 = service.createProduct(new Product(null, "Laptop", 5000));
-        Product p2 = service.createProduct(new Product(null, "Mouse", 200));
+        Product p1 = service.createProduct(new Product(null, "Laptop", 5000), 1L);
+        Product p2 = service.createProduct(new Product(null, "Mouse", 200), 1L);
 
         List<Product> result = service.getAllProducts();
 
@@ -80,11 +86,11 @@ class ProductServiceTest {
     @Test
     void shouldUpdateProduct() {
         Product product = new Product(null, "Laptop", 5000);
-        Product created = service.createProduct(product);
+        Product created = service.createProduct(product, 1L);
 
         Product updateData = new Product(null, "Gaming Laptop", 7000);
 
-        Product updated = service.updateProduct(created.getId(), updateData);
+        Product updated = service.updateProduct(created.getId(), updateData, 1L);
 
         assertEquals(created.getId(), updated.getId());
         assertEquals("Gaming Laptop", updated.getName());
