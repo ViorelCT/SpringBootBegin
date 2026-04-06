@@ -5,6 +5,7 @@ Simple REST API built with Spring Boot and PostgreSQL.
 ## Features
 - CRUD operations for products
 - PostgreSQL persistence with JPA/Hibernate
+- Flyway for DB migration
 - Validation for input data
 - REST endpoints
 - Optional database management using DBeaver
@@ -23,27 +24,42 @@ Simple REST API built with Spring Boot and PostgreSQL.
 - Java 17+ (or your version)
 - Spring Boot
 - PostgreSQL
+- Flyway
 - JPA / Hibernate
 - Maven (for dependency management)
 - DBeaver (optional, for visual DB management)
+- Docker
 
 ## Setup Instructions
 
 1. **PostgreSQL**
     - Install PostgreSQL.
-    - Create a database, e.g., `ProductDB`.
+    - Create a database, e.g., `postgres`.
     - Note your username and password.
 
 2. **Application configuration**
     - Edit `src/main/resources/application.properties`:
 
 ```properties
-spring.datasource.url=jdbc:postgresql://localhost:5432/ProductDB
-spring.datasource.username=your_username
-spring.datasource.password=your_password
+spring.application.name=tutorial
 
-spring.jpa.hibernate.ddl-auto=update
+spring.datasource.url=jdbc:postgresql://localhost:5432/postgres
+spring.datasource.username=postgres
+spring.datasource.password=dbpw
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+#spring.jpa.hibernate.ddl-auto=validate
 spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+spring.flyway.enabled=true
+
+# This is only for fresh start.
+spring.flyway.clean-disabled=false
+
+spring.flyway.baseline-on-migrate=true
+spring.flyway.validate-on-migrate=true
+spring.flyway.locations=classpath:/db/migration
 ```
 
 3. **Run the application**
@@ -55,9 +71,18 @@ spring.jpa.show-sql=true
 
 4. **Testing with Postman**
 
-    - Send requests to http://localhost:8080/products.
+   - Send requests to http://localhost:8080/categories.
 
-    - Example JSON for creating a product:
+   - Example JSON for creating a category:
+```properties
+    {
+    "name": "Electronics"
+    }
+```
+
+   - Send requests to http://localhost:8080/products.
+
+   - Example JSON for creating a product:
 ```properties
     {
     "name": "Laptop",
